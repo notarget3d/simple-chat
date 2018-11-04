@@ -1,6 +1,4 @@
-﻿//#include "main.h"
-
-#include "Winpp.h"
+﻿#include "Winpp.h"
 #include "resource.h"
 
 #pragma comment(lib, "Ws2_32.lib")
@@ -97,9 +95,6 @@ private:
 	{
 		if (m_ClientRunning == 1)
 			return true;
-
-		/*if (m_ClientSocket != INVALID_SOCKET)
-			return true;*/
 
 		return false;
 	}
@@ -436,21 +431,8 @@ private:
 						continue;
 					}
 
-					//if (iRes != NO_ERROR)
-					//{
-					//	RemoveClient(i);
-					//	continue;
-					//}
-
-					//if (iBL == 0)
-					//{
-					//	std::this_thread::sleep_for(std::chrono::milliseconds(25));
-					//	continue;
-					//}		// Don't block thread
-
 					iRes = recv(m_Clients[i], reinterpret_cast<char*>(buf), DEFAULT_BUFLEN * sizeof(TCHAR) - 6, 0);
-					//iRes = WSARecv(m_Clients[i], reinterpret_cast<LPWSABUF>(buf), DEFAULT_BUFLEN * sizeof(TCHAR) - 6, NULL, 0);
-
+					
 					if (iRes > 0)
 					{
 						Log(buf);
@@ -459,16 +441,7 @@ private:
 						//for (auto s : m_Clients)
 						for (int isend = 0; isend < m_Clients.size(); isend++)
 						{
-							// No callback
-							/*if (isend != i)
-							{	}*/
-
 							iSend = send(m_Clients[isend], buf, iRes, 0);
-
-							if (iSend == SOCKET_ERROR)
-							{
-								// Handle error?
-							}
 						}
 					}
 					else if (iRes == 0)
@@ -486,7 +459,6 @@ private:
 	{
 		std::this_thread::sleep_for(std::chrono::seconds(1));
 
-		//char buf[DEFAULT_BUFLEN]{ 0 };	// Buffer
 		TCHAR buf[DEFAULT_BUFLEN]{ 0 };		// String
 
 		struct addrinfo *ptr = NULL;
@@ -539,8 +511,6 @@ private:
 			iRes = ioctlsocket(m_ClientSocket, FIONBIO, &iBL);
 			if (iRes != NO_ERROR)
 			{
-				// Error
-				//ClientDisconnect();
 				m_ClientRunning = 0;
 				if (m_ClientSocket != INVALID_SOCKET)
 				{
@@ -596,7 +566,6 @@ private:
 		m_ClientSocket = INVALID_SOCKET, m_ReadSocket = INVALID_SOCKET;
 
 	struct addrinfo *result = NULL, hints;
-	//char recvbuf[DEFAULT_BUFLEN];
 
 	// Controll handles
 	HWND hEditSend, hEditLogs;

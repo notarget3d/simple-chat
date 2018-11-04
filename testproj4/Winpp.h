@@ -17,10 +17,7 @@ protected:
 	void AppendEditText(HWND hEditWnd, const TCHAR* text);
 
 	LRESULT virtual CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-
-	//void virtual OnPaint(HWND hWnd);
 	void virtual OnCreate(HWND hWnd);
-	//void virtual OnDestroy(HWND hWnd);
 
 	HWND GetWindowHandle() const { return m_hWnd; }
 	HINSTANCE GetInstance() const { return m_Inst; }

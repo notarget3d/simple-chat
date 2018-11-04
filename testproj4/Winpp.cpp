@@ -59,16 +59,6 @@ LRESULT CALLBACK WinPlus::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 {
 	switch (message)
 	{
-	/*case WM_CREATE:
-	{
-		OnCreate(hWnd);
-	}
-	break;
-	case WM_PAINT:
-	{
-		OnPaint(hWnd);
-	}
-	break;*/
 	case WM_CLOSE:
 		PostQuitMessage(0);
 		break;
@@ -78,9 +68,7 @@ LRESULT CALLBACK WinPlus::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 	return 0;
 }
 
-//void WinPlus::OnPaint(HWND hWnd) { return; }
 void WinPlus::OnCreate(HWND hWnd) { return; }
-//void WinPlus::OnDestroy(HWND hWnd) { return; }
 
 void WinPlus::AppendEditText(HWND hEditWnd, const TCHAR* text)
 {
